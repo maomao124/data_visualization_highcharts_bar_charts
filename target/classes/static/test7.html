@@ -1,0 +1,68 @@
+<html lang="en">
+<head>
+    <meta charSet="UTF-8">
+    <title>百分比堆叠柱状图</title>
+
+    <script src="./js/highcharts.js"></script>
+    <script src="./js/exporting.js"></script>
+    <script src="./js/series-label.js"></script>
+    <script src="./js/zh_cn.js"></script>
+
+</head>
+
+<style>
+    #container {
+        width: 70vw;
+        height: 70vh;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+</style>
+<body>
+<div id="container"></div>
+<script>
+    var chart = Highcharts.chart('container', {
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: '百分比堆叠柱形图'
+        },
+        xAxis: {
+            categories: ['苹果', '橘子', '梨', '葡萄', '香蕉']
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: '水果消费总量'
+            }
+        },
+        tooltip: {
+            pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b>' +
+                '({point.percentage:.0f}%)<br/>',
+            //:.0f 表示保留 0 位小数，详见教程：https://www.hcharts.cn/docs/basic-labels-string-formatting
+            shared: true
+        },
+        plotOptions: {
+            column: {
+                stacking: 'percent'
+            }
+        },
+        series: [{
+            name: '小张',
+            data: [5, 3, 4, 7, 2]
+        }, {
+            name: '小彭',
+            data: [2, 2, 3, 2, 1]
+        }, {
+            name: '小潘',
+            data: [3, 4, 4, 2, 5]
+        }]
+    });
+
+</script>
+
+</body>
+</html>
